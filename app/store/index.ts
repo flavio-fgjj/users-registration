@@ -1,6 +1,7 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { persistReducer, persistStore } from 'redux-persist';
+import {persistReducer, persistStore} from 'redux-persist';
+import features from './features';
 
 const persistConfig = {
   key: 'root',
@@ -9,7 +10,7 @@ const persistConfig = {
 };
 
 const reducers = combineReducers({
-  user: userReducer,
+  ...features,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -23,4 +24,4 @@ const persistor = persistStore(store);
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
-export { store, persistor };
+export {store, persistor};

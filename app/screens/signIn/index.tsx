@@ -4,12 +4,12 @@ import auth from '@react-native-firebase/auth';
 
 import {styles} from './styles';
 
-import logo from '../assets/registration.png';
-import {MyButton} from '../components/MyButton';
-import {MyTextInput} from '../components/MyTextInput';
-import {MyLink} from '../components/MyLink';
+import logo from '@assets/registration.png';
+import {MyButton} from '@components/MyButton';
+import {MyTextInput} from '@components/MyTextInput';
+import {MyLink} from '@components/MyLink';
 
-export function SignInScreen() {
+export default function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -35,9 +35,9 @@ export function SignInScreen() {
   function signIn() {
     auth()
       .signInWithEmailAndPassword(email, password)
-      .then((credentials) => {
+      .then(credentials => {
         console.log('user is authenticated');
-        console.log(credentials)
+        console.log(credentials);
       })
       .catch(error => {
         console.error(error);
@@ -45,8 +45,8 @@ export function SignInScreen() {
   }
 
   return (
-    <View style={[styles.container, {justifyContent: 'center'}]}>
-      <Image resizeMode="contain" source={logo} style={{width: 150}} />
+    <View style={styles.container}>
+      <Image resizeMode="contain" source={logo} style={styles.img} />
       <MyTextInput placeholder="e-mail" value={email} onChangeText={setEmail} />
       <MyTextInput
         placeholder="senha"

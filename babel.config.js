@@ -19,7 +19,7 @@ module.exports = {
           '@assets': './app/assets',
           '@components': './app/components',
           '@screens': './app/screens',
-          '@routes': './app/routes',
+          '@router': './app/router',
           '@services': './app/services',
         },
       },
