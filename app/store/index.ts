@@ -1,7 +1,8 @@
-import {combineReducers, configureStore} from '@reduxjs/toolkit';
+import {configureStore} from '@reduxjs/toolkit';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {persistReducer, persistStore} from 'redux-persist';
-import features from './features';
+import rootReducer from './features';
+import thunkMiddleware from 'redux-thunk';
 
 const persistConfig = {
   key: 'root',
@@ -9,14 +10,14 @@ const persistConfig = {
   whitelist: ['user'],
 };
 
-const reducers = combineReducers({
-  ...features,
-});
-
-const persistedReducer = persistReducer(persistConfig, reducers);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }).concat(thunkMiddleware),
 });
 
 const persistor = persistStore(store);
