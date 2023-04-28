@@ -26,9 +26,11 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.primary,
     borderRadius: 8,
-    padding: 20,
-    minWidth: 150,
+    width: '100%',
+    height: 50,
   },
 });
