@@ -1,18 +1,25 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-import auth from '@react-native-firebase/auth';
+import {View} from 'react-native';
 
-import {MyButton} from '@components/MyButton';
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+
+// styles
 import {styles} from './styles';
 
-export default function Home() {
-  function signOut() {
-    auth().signOut();
-  }
+// components
+import FAB from '@components/FAB';
+import { RootStackParamList } from '@router/app.routes';
+
+type HomeScreenProps = NativeStackScreenProps<RootStackParamList, "HomeScreen">;
+
+const Home: React.FC<HomeScreenProps> = (props) => {
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <MyButton onPress={signOut} title="Sair" />
+      <FAB onPress={() => props.navigation.push("ContactScreen")} title="+" />
     </View>
   );
 }
+
+
+export default Home;
