@@ -1,16 +1,53 @@
 import React, {useState} from 'react';
 import {View} from 'react-native';
 
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useDispatch} from 'react-redux';
+
 import {MyButton} from '@components/MyButton';
 import {styles} from './styles';
 import {MyTextInput} from '@components/MyTextInput';
 
-export default function Contact() {
-  const [name, setName] = useState<string>('');
-  const [phone, setPhone] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+import { addContact, updateContact } from 'app/store/features/contact';
 
-  function save() {}
+import {useAppSelector} from 'app/store';
+
+type Props = NativeStackScreenProps<any>;
+
+export default function Contact({navigation, route}: Props) {
+  const contact = route.params?.contact || {};
+
+  const dispatch = useDispatch();
+
+  const [name, setName] = useState<string>(contact.name || '');
+  const [phone, setPhone] = useState<string>(contact.phone || '');
+  const [email, setEmail] = useState<string>(contact.email || '');
+
+  const user = useAppSelector(state => state.auth?.user);
+
+  function save() {
+    if (contact.email) {
+      dispatch(
+        updateContact({
+          name, 
+          phone, 
+          email, 
+          emailUser: user.email, 
+          navigation
+        })
+      )
+    } else {
+      dispatch(
+        addContact({
+          name, 
+          phone, 
+          email, 
+          emailUser: user.email, 
+          navigation
+        })
+      )
+    }
+  }
 
   return (
     <View style={styles.container}>

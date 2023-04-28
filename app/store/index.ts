@@ -8,7 +8,7 @@ import {TypedUseSelectorHook, useSelector} from 'react-redux';
 const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'contact'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
