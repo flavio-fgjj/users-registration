@@ -26,9 +26,16 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   button: {
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.primary,
     borderRadius: 8,
+<<<<<<< HEAD
     padding: 14,
     minWidth: 70,
+=======
+    width: '100%',
+    height: 50,
+>>>>>>> feature/started
   },
 });

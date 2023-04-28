@@ -9,20 +9,25 @@ import {MyTextInput} from '@components/MyTextInput';
 import {MyLink} from '@components/MyLink';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {useDispatch} from 'react-redux';
-import {signIn} from 'app/store/features/auth';
+import {addUser} from 'app/store/features/auth';
 
 type Props = NativeStackScreenProps<any>;
 
-function SignIn({navigation}: Props) {
+function SignUp({navigation}: Props) {
   const dispatch = useDispatch();
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
 
-  function loginIn() {
+  function signUp() {
     dispatch(
-      signIn({
+      addUser({
+        name,
         email,
         password,
+        passwordConfirm,
+        navigation,
       }),
     );
   }
@@ -30,6 +35,7 @@ function SignIn({navigation}: Props) {
   return (
     <View style={styles.container}>
       <Image resizeMode="contain" source={logo} style={styles.img} />
+      <MyTextInput placeholder="nome" value={name} onChangeText={setName} />
       <MyTextInput placeholder="e-mail" value={email} onChangeText={setEmail} />
       <MyTextInput
         placeholder="senha"
@@ -37,12 +43,18 @@ function SignIn({navigation}: Props) {
         value={password}
         onChangeText={setPassword}
       />
+      <MyTextInput
+        placeholder="confirmar senha"
+        secureTextEntry
+        value={passwordConfirm}
+        onChangeText={setPasswordConfirm}
+      />
 
-      <MyButton onPress={loginIn} title="Entrar no App" />
+      <MyButton onPress={signUp} title="Cadastrar" />
 
-      <MyLink title="Cadastrar" onPress={() => navigation.navigate('SignUp')} />
+      <MyLink title="Voltar" onPress={() => navigation.goBack()} />
     </View>
   );
 }
 
-export default SignIn;
+export default SignUp;
