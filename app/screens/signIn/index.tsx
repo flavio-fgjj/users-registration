@@ -1,14 +1,20 @@
 import React, {useState} from 'react';
 import {View, Image} from 'react-native';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {useDispatch} from 'react-redux';
 
+// styles
 import {styles} from './styles';
 
+// assets
 import logo from '@assets/registration.png';
+
+// components
 import {MyButton} from '@components/MyButton';
 import {MyTextInput} from '@components/MyTextInput';
 import {MyLink} from '@components/MyLink';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {useDispatch} from 'react-redux';
+
+// store
 import {signIn} from 'app/store/features/auth';
 
 type Props = NativeStackScreenProps<any>;

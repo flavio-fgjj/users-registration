@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     container: {
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 20,
+        borderRadius: 30,
         position: "absolute",
-        bottom: 50,
-        right: 40,
+        bottom: 30,
+        right: 30,
         backgroundColor: colors.primary,
         paddingHorizontal: 20,
         paddingVertical: 10,
