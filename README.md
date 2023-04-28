@@ -18,7 +18,7 @@ Veja se você tem os pré-requisitos e depois faça o clone para a sua maquina e
 ```
 ## 📦 Recomendação
 
-* Fazer clone a partir da branch main
+* Fazer clone a partir da branch master
 * Instalar dependências
 
 ## 🖖 Start Android
